@@ -58,8 +58,14 @@ module ``about the stock example`` =
     // tests for yourself along the way. You can also try 
     // using the F# Interactive window to check your progress.
 
+    //Finished with some  help from: https://github.com/bonneyab/FSharpKoans/blob/master/FSharpKoans/AboutTheStockExample.fs
+    let openingprice(x:string) = x.Split([|','|]).[1]
+    let closingprice(x:string) = x.Split([|','|]).[4]
+
+    let difference(x: string) = abs(float(openingprice x) - float(closingprice x))
+
     [<Koan>]
     let YouGotTheAnswerCorrect() =
-        let result =  __
+        let result =  List.maxBy difference stockData.Tail
         
-        AssertEquality "2012-03-13" result
+        AssertEquality "2012-03-13" (result.Split ',').[0]
